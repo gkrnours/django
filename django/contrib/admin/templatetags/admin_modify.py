@@ -28,7 +28,7 @@ def prepopulated_fields_js(context):
             "name": field["field"].name,
             "dependency_ids": ["#%s" % dependency.auto_id for dependency in field["dependencies"]],
             "dependency_list": [dependency.name for dependency in field["dependencies"]],
-            "maxLength": field["field"].field.max_length or 50,
+            "maxLength": getattr(field["field"].field, "max_length", 50),
             "allowUnicode": getattr(field["field"].field, "allow_unicode", False)
         })
 
